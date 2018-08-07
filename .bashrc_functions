@@ -3,7 +3,7 @@ function c() {
 }
 
 # Create a new directory and enter it
-function mkdir() {
+function md() {
 	mkdir -p "$@" && cd "$_";
 }
 
