@@ -1,0 +1,39 @@
+# Easier navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+# Shortcuts
+alias %=' '	# commands starting with % for pasting from web
+alias a="alias"
+alias e="$EDITOR"
+alias h="history"
+alias j="jobs"
+alias path='echo $PATH | tr -s ":" "\n"'
+alias pbc='pbcopy'
+alias pbp='pbpaste'
+alias pj='python -m json.tool'
+alias reload='. ~/.bash_profile'
+alias t="tree -L 1 --dirsfirst -shup"	# nice directory tree listing
+alias t2="tree -L 2 --dirsfirst"
+alias week='date +%V'	# Get week number
+
+# git
+alias g="git"
+alias gl='git pull'
+alias gp='git push'
+alias gd='git diff'
+alias gc='git commit'
+alias gca='git commit -a'
+alias gco='git checkout'
+alias gb='git branch'
+alias gs='git status'
+alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
+
+# IP addresses
+alias IP="ipconfig getifaddr en0"
+alias publicIP="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localIP='ifconfig -a | grep "inet " | grep broadcast | awk "{ print $2 }"'
+alias whois="whois -h whois-servers.net"
+
+[[ -f ~/.bashrc_aliases-local ]] && source ~/.bashrc_aliases-local

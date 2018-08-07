@@ -1,0 +1,19 @@
+# PureLine configuration
+#
+
+declare -a pureline_modules=(
+#    Name                   Background  Foreground  Option
+    'host_module                Yellow      Black       false'   # show username
+    'user_module                Yellow      Black       false'   # show hostname
+    'path_module                Green       Black       0'
+    'git_module                 Green       Black       Red'    # Color for dirty status
+    'read_only_module           Red         White'
+    'return_code_module         Red         White'
+
+#   'newline_module'
+#   'virtual_env_module         Blue        Black'
+#   'jobs_module                Purple	    White'
+#   'git_stash_module           Green       Black'
+#   'git_ahead_behind_module    Green       Black'
+#   'prompt_module              Purple	    Black'
+)

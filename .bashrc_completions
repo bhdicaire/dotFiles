@@ -1,0 +1,10 @@
+# for file in ~/.bashrc_completions-{git}; do
+#     [ -r "$file" ] && [ -f "$file" ] && source "$file";
+# done;
+# unset file;
+
+if [ $(uname) == "Darwin" ]; then
+	[[ -f ~/.bashrc_completions-macOS ]] && source ~/.bashrc_completions-macOS
+fi
+
+[[ -f ~/.bashrc_completions-local ]] && source ~/.bashrc_completions-local

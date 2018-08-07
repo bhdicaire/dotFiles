@@ -1,0 +1,36 @@
+if [[ $(uname) == "Darwin" ]]; then
+	alias chromeKill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
+	alias cleanServices="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"	# Clean up LaunchServices to remove duplicates in the “Open With” menu
+	alias cleanUp="find . -type f -name '*.DS_Store' -ls -delete"
+	alias dl="cd ~/Downloads"
+	alias dotFiles='/usr/local/bin/git --git-dir=/Users/bhdicaire/.dotFiles --work-tree=/Users/bhdicaire/'
+	alias dt="cd ~/Desktop"
+	alias emptyTrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"	# Empty the Trash on all volumes and clear Apple’s System Logs
+	alias finder='open -a Finder'
+	alias l="ls -laF"	# List all files colorized in long format, including dot files
+	alias lockScreen="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+	alias lsd="ls -lF | grep --color=never '^d'"	# List only directories
+	alias updateAll='sudo softwareupdate -i -a; brew update; brew upgrade --all; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update'
+
+	# Show/hide hidden files in Finder/ desktop icons
+	alias showFiles="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+	alias hideFiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+	alias hideDesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+	alias showDesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+	command -v hd > /dev/null || alias hd="hexdump -C"	# Canonical hex dump; some systems have this symlinked
+	command -v md5sum > /dev/null || alias md5sum="md5"	# OS X has no `md5sum`, so use `md5` as a fallback
+	command -v sha1sum > /dev/null || alias sha1sum="shasum"	# OS X has no `sha1sum`, so use `shasum` as a fallback
+fi
+
+if which rbenv > /dev/null; then
+	export RBENV_ROOT=/usr/local/var/rbenv
+	eval "$(rbenv init -)";
+	#export PATH="$HOME/.rbenv/shims:$PATH"
+	export PATH="/usr/local/var/rbenv/shims:$PATH"
+fi
+
+if which go > /dev/null; then
+	export GOPATH=$HOME/go
+	export PATH=$PATH:$GOPATH/bin:/usr/local/opt/go/libexec/bin
+fi
