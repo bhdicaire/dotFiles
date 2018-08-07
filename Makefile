@@ -74,11 +74,12 @@ tmux:
 
 ssh:
 	@echo -e  $(boldText)"\n\n##########" $(tab)Commit SSH$(tabNormal)"\n"
-	@cp ~/.ssh/config .
-	@cp ~/.ssh/sshConfig* .
-	@$(GIT) add config sshConfig*
-	@$(GIT) commit -m"Add SSH configuration"
-	@$(GIT) push
+	mkdir -p .ssh
+	cp ~/.ssh/config .ssh
+	cp ~/.ssh/sshConfig* .ssh
+	$(GIT) add .ssh/config .ssh/sshConfig*
+	$(GIT) commit -m"Add SSH configuration"
+	$(GIT) push
 	@printf "\n\n"
 
 banner:
