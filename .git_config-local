@@ -1,0 +1,27 @@
+[user]
+  name = Benoît H. Dicaire
+  email = bh@dicaire.com
+  username = bhdicaire
+
+[github]
+  user = bhdicaire
+  
+[credential]
+#	helper = !aws codecommit credential-helper setup
+	helper = osxkeychain
+
+[web]
+  browser = google-chrome
+  
+[gpg]
+	program = gpg	  
+	
+[core]
+  excludesfile = ~/.git_config.ignore
+  autocrlf = input 	# Set line-ending behavior for macOS (input) and Windows (true)
+  editor = vim
+  
+[commit]
+	template = ~/.git_config.message
+	
+	  
