@@ -1,0 +1,11 @@
+Host junior
+     HostName junior.local
+     User bhd
+     Port 4242
+     IdentityFile ~/.ssh/id-juniorDicaireCom.key
+
+Host mediaz
+     HostName mediaz.dicaire.com
+     User bhdicaire
+     Port 4242
+     IdentityFile ~/.ssh/id-mediazDicaireCom.key
