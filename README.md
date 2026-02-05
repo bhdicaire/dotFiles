@@ -1,19 +1,13 @@
 # ![Logo](.github/header.png "Logo")
 ![GitHub Stars](https://img.shields.io/github/stars/bhdicaire/dotFiles?style=flat-square&logoColor=186ADE&labelColor=3E5462&color=00A1E8)
 ![GitHub forks](https://img.shields.io/github/forks/bhdicaire/dotFiles?style=flat-square&logoColor=186ADE&labelColor=3E5462&color=00A1E8)
-![GitHub Last Commit](https://img.shields.io/github/last-commit/bhdicaire/dotFiles?style=flat-square&logoColor=186ADE&labelColor=3E5462&color=00A1E8)
-![GitHub licence](https://img.shields.io/github/license/bhdicaire/dotFiles?style=flat-square&logoColor=186ADE&labelColor=3E5462&color=00A1E8)
 ![GitHub release](https://img.shields.io/github/v/release/bhdicaire/dotFiles?style=flat-square&logoColor=186ADE&labelColor=3E5462&color=00A1E8)
-[![Lint](https://github.com/bhdicaire/dotFiles/actions/workflows/lint.yml/badge.svg)](https://github.com/bhdicaire/dotFiles/actions/workflows/lint.yml)
-[![Chezmoi Test](https://github.com/bhdicaire/dotFiles/actions/workflows/chezmoi-test.yml/badge.svg)](https://github.com/bhdicaire/dotFiles/actions/workflows/chezmoi-test.yml)
-[![Release](https://github.com/bhdicaire/dotFiles/actions/workflows/release.yml/badge.svg)](https://github.com/bhdicaire/dotFiles/actions/workflows/release.yml)
-![chezmoi](https://img.shields.io/badge/managed%20by-chezmoi-00A1E8)
-![shell-zsh](https://img.shields.io/badge/shell-zsh-00A1E8)
-![prompt-starship](https://img.shields.io/badge/prompt-starship-00A1E8)
-
+![GitHub Last Commit](https://img.shields.io/github/last-commit/bhdicaire/dotFiles?style=flat-square&logoColor=186ADE&labelColor=3E5462&color=00A1E8)
 ![Lint](https://img.shields.io/github/actions/workflow/status/bhdicaire/dotFiles/lint.yml?style=flat-square&label=lint&logoColor=186ADE&labelColor=3E5462&color=00A1E8)
-![Chezmoi Test](https://img.shields.io/github/actions/workflow/status/bhdicaire/dotFiles/chezmoi-test.yml?style=flat-square&label=chezmoi%20test&logoColor=186ADE&labelColor=3E5462&color=00A1E8)
-![Release](https://img.shields.io/github/actions/workflow/status/bhdicaire/dotFiles/release.yml?style=flat-square&label=release&logoColor=186ADE&labelColor=3E5462&color=00A1E8)
+![GitHub licence](https://img.shields.io/github/license/bhdicaire/dotFiles?style=flat-square&logoColor=186ADE&labelColor=3E5462&color=00A1E8)
+![shell-zsh](https://img.shields.io/badge/shell-zsh-00A1E8)
+![chezmoi](https://img.shields.io/badge/managed%20by-chezmoi-00A1E8)
+![prompt-starship](https://img.shields.io/badge/prompt-starship-00A1E8)
 
 Your dotFiles should be unique. These are mine, fork this repository as a reference. You can learn a lot by looking at how other people set up their dotfiles.
 
