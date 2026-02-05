@@ -114,7 +114,7 @@ Modular [SSH](https://www.openssh.org/) configuration:
 On a fresh Debian install, run:
 
 ```bash
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply bhdicaire
+sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.config/bin init --apply bhdicaire
 ```
 
 ① Installs [Chezmoi](https://www.chezmoi.io/) to manage your dotFiles
