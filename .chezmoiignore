@@ -1,0 +1,33 @@
+# =============================================================================
+# Defines list of globs to exclude from copying to target user directory.
+# Supports Go's text/template language.
+#
+# See https://www.chezmoi.io/reference/special-files-and-directories/chezmoiignore/
+
+.github/
+.DS_Store
+assets/
+.pre-commit-config.yaml
+CHANGELOG.md
+LICENSE
+Makefile
+package.json
+README.md
+ansible.cfg
+
+# Don't copy the following files if OS is OSX
+{{- if ne .chezmoi.os "linux" }}
+.config/i3
+.xinitrc
+.xsession
+.Xmodmap
+.Xresources
+.xinitrc
+.xsession
+{{- end }}
+
+# Don't copy the following files if OS is Linux
+{{- if ne .chezmoi.os "darwin" }}
+.skhdrc
+{{- end }}
+

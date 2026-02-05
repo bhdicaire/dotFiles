@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Exit on error
+set -e
+
+{{ if eq .chezmoi.os "linux" -}}
+echo "🚀 Starting package installation..."
+
+# 1. 🌍 Configuring Locales (Non-interactive)
+# This prevents Perl/Apt warnings during the rest of the script
+echo "🌍 Configuring Locales..."
+if ! locale -a | grep -q "en_CA.utf8"; then
+    # Uncomment en_CA.UTF-8 in the locale.gen file
+    sudo sed -i 's/^# *en_CA.UTF-8 UTF-8/en_CA.UTF-8 UTF-8/' /etc/locale.gen
+    # Generate the locale
+    sudo locale-gen en_CA.UTF-8
+    # Set system default
+    sudo update-locale LANG=en_CA.UTF-8 LC_ALL=en_CA.UTF-8
+    # Export immediately to silence warnings for this current script session
+    export LANG=en_CA.UTF-8
+    export LC_ALL=en_CA.UTF-8
+    echo "✅ Locale en_CA.UTF-8 generated and set."
+else
+    echo "ℹ️ Locale en_CA.UTF-8 already exists."
+fi
+
+# 2. 🛡️ Prepare SSH Environment
+# Create socket directory for SSH multiplexing
+mkdir -p $HOME/.ssh/sockets
+chmod 700 $HOME/.ssh/sockets
+echo "✅ SSH socket directory prepared."
+
+# 3. 📦 Install Full Vim + Admin essentials
+# We update apt now that locales are fixed to avoid warnings
+sudo apt update -y
+sudo apt full-upgrade -y
+sudo apt install -y vim btop htop tmux curl wget gpg fastfetch zsh git
+
+# 4. 📂 Add eza repository for modern 'ls'
+if ! command -v eza &> /dev/null; then
+    sudo mkdir -p /etc/apt/keyrings
+    wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+    echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+    sudo apt update
+    sudo apt install -y eza
+fi
+
+# 5. 🚀 Install Starship prompt
+if ! command -v starship &> /dev/null; then
+    curl -sS https://starship.rs/install.sh | sh -s -- -y
+fi
+
+echo "✅ System packages and environment are ready!"
+{{ end -}}
+
+# 6. 🐚 Switch default shell to Zsh
+if [ "$SHELL" != "$(which zsh)" ]; then
+    echo "🐚 Switching default shell to Zsh..."
+    sudo chsh -s "$(which zsh)" "$USER"
+    echo "✅ Default shell changed to Zsh for $USER."
+else
+    echo "ℹ️ Zsh is already the default shell."
+fi

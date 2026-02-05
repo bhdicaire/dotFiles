@@ -1,0 +1,11 @@
+{{- $email := promptStringOnce . "email" "Admin Email Address" -}}
+{{- $name := promptStringOnce . "name" "Admin Full Name" -}}
+{{- $hostname := promptStringOnce . "hostname" "Hostname" -}}
+{{- $username := promptStringOnce . "username" "Admin Username" "sysadmin" -}}
+
+[data]
+    email = {{ $email | quote }}
+    name = {{ $name | quote }}
+    hostname = {{ $hostname | quote }}
+    username = {{ $username | quote }}
+    is_server = true

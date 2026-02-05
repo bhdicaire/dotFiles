@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+## ICS
+echo "I am going to delete .ICS files"
+find -x ./Downloads/ -type f -name '*.ics' -print -delete
+find -x ./OneDrive* -type f -name '*.ics' -print -delete
+
+## Thumbs.db
+echo "I am going to delete thumbs.db files"
+find -x ./Downloads/ -type f -name 'Thumbs.db' -print -delete
+find -x ./OneDrive* -type f -name 'Thumbs.db' -print -delete
+
+## Empty Directory
+echo "I am going to delete empty directories"
+find -x ./Downloads/ -type d -empty -print -delete
+find -x ./OneDrive* -type d -empty -print -delete
+

@@ -1,0 +1,53 @@
+[alias]
+
+# +---------------------+
+# | FIX INCONSISTENCIES |
+# +---------------------+
+branches = branch -a
+stashes  = stash list
+remotes  = remote -v
+tags     = tag
+
+# +----------------------------------+
+# | ONE LETTER ALIAS WITHOUT OPTIONS |
+# +----------------------------------+
+a = add
+b = branch
+c = commit
+d = diff
+f = fetch
+g = grep
+l = log
+m = merge
+p = pull
+r = remote
+s = status
+w = whatchanged
+z = config -l
+
+# +---------------+
+# | SHORT ALIASES |
+# +---------------+
+au   = !cd ${GIT_PREFIX:-.} && git add --update . && git status
+cm = commit --message
+dc  = diff --cached
+st = status -sb
+
+uncommit = reset --soft HEAD~1
+unmerge  = reset --hard ORIG_HEAD
+fire = "!git add -A && git commit -m 'FIRE FIRE FIRE' && git push origin fire-branch"
+
+# +-----+
+# | LOG |
+# +-----+
+tree    = log --pretty=better-oneline --all --graph
+ls      = log --pretty=better-oneline
+ll      = log --pretty=better-oneline --numstat
+details = "!f() { git ll "$1"^.."$1"; }; f"
+log-of-format-and-count = "!f() { format=\"$1\"; shift; git log $@ --format=oneline --format="$format" | awk '{a[$0]++}END{for(i in a){print i, a[i], int((a[i]/NR)*100) \"%\"}}' | sort; }; f"
+
+# +-------------------------------+
+# | TIMELINE: WHO, WHAT, and WHEN |
+# +-------------------------------+
+timeline = log --graph -10 --branches --remotes --tags  --format=format:'%Cgreen%h %Creset• %<(75,trunc)%s (%cN, %cr) %Cred%d' --date-order
+

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# xterm-ghostty hash: {{ include "xterm-ghostty.terminfo" | sha256sum }}
+
+echo "🛠️ Compiling Ghostty terminfo..."
+
+# Ensure the user terminfo directory exists
+mkdir -p "$HOME/.terminfo"
+
+# Compile the definition.
+# -x: Essential for Ghostty modern capabilities (undercurls, 24-bit color)
+# -o: Forces output to the user directory to avoid permission issues
+tic -x -o "$HOME/.terminfo" <<EOF
+{{ include "xterm-ghostty.terminfo" }}
+EOF
+
+echo "✅ Ghostty terminfo setup complete."

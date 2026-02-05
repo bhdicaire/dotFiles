@@ -1,0 +1,69 @@
+" Ensure nocompatible is at the top to prevent resetting options 
+set nocompatible
+
+" Check if the terminal supports True Color (24-bit)
+if (has("termguicolors"))
+    set termguicolors
+endif
+
+set encoding=utf-8      " File encoding
+set nobackup            " get rid of anoying ~file
+set noswapfile					" get rid of anoying .swp
+set number		" Show line numbers
+set linebreak		" Break lines at word (requires Wrap lines)
+set showbreak=+++	" Wrap-broken line prefix
+set textwidth=180	" Line wrap (number of cols)
+set listchars=tab:▸\ ,eol:¬
+set list
+syntax on               " enable syntax highlighting
+ 
+set hlsearch		" Highlight all search results
+set ignorecase		" Always case-insensitive
+set incsearch		" Searches for strings incrementally
+set wrapscan            " Search scan to wrap around the file
+
+set autoindent		              " Auto-indent new lines
+set shiftwidth=4	              " Number of auto-indent spaces
+set smartindent		" Enable smart-indent
+set smarttab		" Enable smart-tabs
+set tabstop=2           " number of visual spaces per TAB
+set softtabstop=2	" Number of spaces in tab when editing 
+set showtabline=2       " Show tab bar
+
+"set expandtab           " tabs are spaces
+"set cursorline          " highlight current line
+
+set title                       " show file in titlebar
+set ruler                       " Show row and column ruler information
+set visualbell                  " Use visual bell (no beeping)
+set autoread										" Prompt if external changes happen to the file
+set scrolloff=3                 " When the page starts to scroll, keep the cursor 3 lines from top/bottom¬
+set showtabline=2	              " Show tab bar
+set undolevels=200	            " Number of undo levels
+set backspace=indent,eol,start	" Backspace behavioury
+set showmatch                   " Highlight matching [{()}] 
+set showmode 		                " show the editing mode on the last line
+set cmdheight=2                 " Make command line two lines high
+set showcmd
+
+colorscheme mac_classic
+
+nnoremap j gj       " move vertically by visual line
+nnoremap k gk       " move vertically by visual line
+nnoremap B ^        " move to beginning of line¬
+nnoremap E $        " move to end of line¬
+nnoremap gV `[v`]   " highlight last inserted tex
+nnoremap <leader><space> :nohlsearch<CR>  " Turn off search highlight with ,`Space'
+
+augroup configgroup
+    autocmd!
+    autocmd VimEnter * highlight clear SignColumn
+    autocmd BufWritePre *.py,*.txt,*.md
+                \:call <SID>StripTrailingWhitespaces()
+    autocmd FileType python setlocal commentstring=#\ %s
+    autocmd BufEnter *.zsh-theme setlocal filetype=zsh
+    autocmd BufEnter Makefile setlocal noexpandtab
+    autocmd BufEnter *.sh setlocal tabstop=2
+    autocmd BufEnter *.sh setlocal shiftwidth=2
+    autocmd BufEnter *.sh setlocal softtabstop=2
+augroup END

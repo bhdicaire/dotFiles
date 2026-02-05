@@ -1,0 +1,29 @@
+# Local overrides can be added to ~/.ssh/config.local
+Include ~/.ssh/config.local
+
+{{- if .is_server }}
+# Server-to-Server connections :)
+Host pve-node
+    HostName 10.0.0.1  # Example placeholder
+    IdentityFile ~/.ssh/homeLab_pve
+    User {{ .username }}
+{{- end }}
+
+Host *
+    # Hardened Ciphers & Algorithms
+    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+    Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com
+
+    # Multiplexing (Speeds up subsequent connections to the same host)
+    ControlMaster auto
+    ControlPath ~/.ssh/sockets/%r@%h:%p
+    ControlPersist 10m
+
+    # Security & Privacy
+    HashKnownHosts yes
+    GSSAPIAuthentication no
+    VerifyHostKeyDNS yes
+
+    # Environment
+    SendEnv LANG LC_*
+    SetEnv TERM=xterm-256color
