@@ -1,7 +1,7 @@
 [user]
-    name = {{ .name | quote }}
-    email = {{ .email | quote }}
-    signingkey = ~/.ssh/id_ed25519.pub
+		name = {{ .name | quote }}
+		email = {{ .email | quote }}
+		signingkey = ~/.ssh/id_ed25519.pub
 
 [core]
 	excludesFile = ~/.config/git/gitignore_global
@@ -10,16 +10,16 @@
 	defaultBranch = main
 
 [color]
-  ui = true
+	ui = true
 
 [gpg]
-  format = ssh
+	format = ssh
 
 [commit]
-  gpgsign = true
+	gpgsign = true
 
 [status]
-  submoduleSummary = true # Enable submodule summary of commits
+	submoduleSummary = true # Enable submodule summary of commits
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -28,5 +28,5 @@
 	required = true
 
 [include]
-    path = ~/.config/git/aliases
+		path = ~/.config/git/aliases
 

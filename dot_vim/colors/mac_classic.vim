@@ -171,7 +171,7 @@ hi javaScriptSpecial  guifg=#00BC41 ctermfg=35 gui=NONE
 " syntax file does not create matches for some items. In
 " particular:
 " * javaScriptArgument - e.g. function(argument)
-" * javaScriptFuncName for object literal style functions - e.g.: 
+" * javaScriptFuncName for object literal style functions - e.g.:
 "     myFunction: function() { ... }
 
 " YAML: {{{1

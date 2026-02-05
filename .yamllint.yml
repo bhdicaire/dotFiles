@@ -1,0 +1,12 @@
+# .yamllint.yml — YAML linting rules
+# Used by both CI (ibiqlik/action-yamllint) and local (yamllint)
+
+extends: default
+
+rules:
+  line-length:
+    max: 120
+  truthy: disable
+  comments:
+    min-spaces-from-content: 1
+  document-start: disable

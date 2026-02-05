@@ -23,6 +23,7 @@ This repository uses [Chezmoi](https://www.chezmoi.io/) templates. Check the oth
 When you install it, your identity is stored in `~/.config/chezmoi/chezmoi.toml`. You can manually update these values by running: `chezmoi edit-config`.
 
 Many dot files are managed by [Chezmoi](https://www.chezmoi.io/)
+
 * `dot_curlrc`: [Curl](https://curl.se/) is used in command lines or scripts to transfer data
 * `dot_editorconfig`: [EditorConfig](https://editorconfig.org/) a file format that enable various text editors and IDEs to adhere to defined styles
 * `dot_tmux.conf`: [tmux](https://github.com/tmux/tmux/wiki) is a terminal multiplexer. It lets you switch easily between several programs in one terminal, detach them (they keep running in the background) and reattach them to a different terminal
@@ -34,6 +35,7 @@ Many dot files are managed by [Chezmoi](https://www.chezmoi.io/)
 <summary>🧩 Modular Zsh configuration with aliases and functions</summary>
 
 [Zsh](https://www.zsh.org/) is a shell designed for interactive use, the files load order:
+
 1. `~/.zshenv` managed as dot_zshenv
     * Environment variables loaded for all shells such as interactive, non-interactive, login, and scripts
 2. `~/.config/zsh/.zshrc` managed as dot_config/zsh/dot_zshrc
@@ -46,6 +48,7 @@ Many dot files are managed by [Chezmoi](https://www.chezmoi.io/)
     * [Starship prompt](https://starship.rs/) loaded via `.zshrc`
 
 Install zsh manually if you're not using `run_once_before_install-packages.sh.tmpl`
+
 1. `sudo apt install zsh`
 2. `chsh -s /bin/zsh`
 
@@ -60,59 +63,71 @@ The change takes effect on your next login (or open a new terminal session) and 
   * `--group-directories-first`: Keeps your view organized
 * Prompt: [Starship](https://starship.rs/) is gorgeous and works everywhere with Rust-powered
 * System info: [Fastfetch](https://github.com/fastfetch-cli/fastfetch) is a maintained neofetch like tool
+
 </details>
 
 <details>
 <summary>🔒 Hardened GIT & SSH configuration</summary>
 
 Commit Signing: Git is configured to sign commits using SSH keys (ED25519)
-  * [GitHub](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification) & [GitLab] (https://docs.gitlab.com/user/project/repository/signed_commits/ssh/) documentation
+
+* [GitHub](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification) & [GitLab] (https://docs.gitlab.com/user/project/repository/signed_commits/ssh/) documentation
 
 Multiplexing: Hardened ~/.ssh/config with ControlMaster enabled for lightning-fast subsequent connections to the same host
 
 Privacy: Sensitive hostnames and IPs are offloaded to ~/.ssh/config.local (ignored by Git)
 
 Modular [GIT](https://git-scm.com/) configuration:
-* `~/.config/git/config` managed as a Chezmoi's template `/dot_config/config.tmpl` 
+
+* `~/.config/git/config` managed as a Chezmoi's template `/dot_config/config.tmpl`
   * Main config file, template information are collected during the quick start
-* `~/.config/git/aliases` managed as `/dot_config/aliases` 
+* `~/.config/git/aliases` managed as `/dot_config/aliases`
   * Additional configuration loaded via `~/.config/git/config`
-* `~/.config/git/gitignore_global` managed as `/dot_config/gitignore_global` 
+* `~/.config/git/gitignore_global` managed as `/dot_config/gitignore_global`
   * Used by GIT without a specific configuration
 
 Modular [SSH](https://www.openssh.org/) configuration:
+
 * `~/.ssh/config` managed as a Chezmoi's template `dot_ssh/config.tmpl`
   * Main config file, template information are collected during the quick start
 * `~/.ssh/authorized_keys` managed as a Chezmoi's template `dot_ssh/authorized_keys.tmpl`
-  * Contains a list of public keys that are permitted to access that specific user account remotely 
+  * Contains a list of public keys that are permitted to access that specific user account remotely
   * Include one static key and keys fetched from GitHub
 * `~/.ssh/sockets` managed as `dot_ssh/sockets`
   * Support Multiplexing for lightning-fast subsequent connections to the same host
+
 </details>
 
 <details>
 <summary>✍️ Vim configuration with colors cheme support</summary>
 
 [Configured](https://github.com/bhdicaire/dotFiles/blob/main/dot_vimrc) for professional sysadmin work:
-  * Mac classic color scheme [modified by Drew Neil](https://github.com/altercation/vim-colors-solarized) for a clean, light-background aesthetic
-  * Support for termguicolors, optimized for [Ghostty](https://ghostty.org/)
-  * Swaps and backups disabled to keep your home directory clean
+
+* Mac classic color scheme [modified by Drew Neil](https://github.com/altercation/vim-colors-solarized) for a clean, light-background aesthetic
+* Support for termguicolors, optimized for [Ghostty](https://ghostty.org/)
+* Swaps and backups disabled to keep your home directory clean
+
 </details>
 
 ## 🚀 Quick Start
+
 On a fresh Debian install, run:
+
 ```bash
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply bhdicaire
 ```
+
 ① Installs [Chezmoi](https://www.chezmoi.io/) to manage your dotFiles
 
 ② Automatically triggers the [run_once_before_install-packages.sh](https://github.com/bhdicaire/dotFiles/blob/main/run_once_before_install-packages.sh.tmpl) script to install missing components
 
 ③ Prompts you for information in order to generate localized configs
-  * Email for GIT configuration
-  * Full name for GIT signature
-  * Hostname for specific configuration items
-```
+
+* Email for GIT configuration
+* Full name for GIT signature
+* Hostname for specific configuration items
+
+```text
 .
 ├── dot_config/
 │   ├── git/          # Templated Git config (name/email)
@@ -125,6 +140,7 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply bhdicaire
 ├── dot_vimrc         # Main Vim configuration
 └── run_once_before_install-packages.sh.tmpl #  Bootstrap script
 ```
+
 ## Licence
 
 dotFiles by Benoît H. Dicaire are shared under [MIT](https://github.com/bhdicaire/dotFiles/raw/master/LICENSE).
