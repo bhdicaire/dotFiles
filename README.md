@@ -4,7 +4,6 @@
 ![GitHub forks](https://img.shields.io/github/forks/bhdicaire/dotFiles?style=flat-square&logoColor=186ADE&labelColor=3E5462&color=00A1E8)
 ![GitHub release](https://img.shields.io/github/v/release/bhdicaire/dotFiles?style=flat-square&logoColor=186ADE&labelColor=3E5462&color=00A1E8)
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/bhdicaire/dotFiles?style=flat-square&logoColor=186ADE&labelColor=3E5462&color=00A1E8)
-![Lint](https://img.shields.io/github/actions/workflow/status/bhdicaire/dotFiles/lint.yml?style=flat-square&label=lint&logoColor=186ADE&labelColor=3E5462&color=00A1E8)
 ![GitHub licence](https://img.shields.io/github/license/bhdicaire/dotFiles?style=flat-square&logoColor=186ADE&labelColor=3E5462&color=00A1E8)
 ![shell-zsh](https://img.shields.io/badge/shell-zsh-00A1E8)
 ![chezmoi](https://img.shields.io/badge/managed%20by-chezmoi-00A1E8)
