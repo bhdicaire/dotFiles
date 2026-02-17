@@ -1,6 +1,6 @@
 {- $email := promptStringOnce . "email" "Admin Email Address" -}}
 {{- $name := promptStringOnce . "name" "Full Name" -}}
-{{- $hostname := promptStringOnce . "hostname" "Hostname" -}}
+{{- $hostname := .chezmoi.hostname  -}}
 {{- $headless := or (get . "headless") false -}}
 {{- $osid := or (get . "osid") .chezmoi.os -}}
 
