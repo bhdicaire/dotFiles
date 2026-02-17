@@ -1,7 +1,7 @@
 {{- $email := promptStringOnce . "email" "Admin Email Address" -}}
 {{- $name := promptStringOnce . "name" "Full Name" -}}
 {{- $username := promptStringOnce . "username" "Github username" -}}
-{{- $server := promptStringOnce . "is_server" "Server (true or false)" -}}
+{{- $server := or (get . "is_server") false -}}
 {{- $hostname := .chezmoi.hostname -}}
 {{- $headless := or (get . "headless") false -}}
 {{- $osid := or (get . "osid") .chezmoi.os -}}
