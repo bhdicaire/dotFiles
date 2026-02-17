@@ -2,7 +2,7 @@
 # Exit on error
 set -e
 
-{ if get . "headless" | default false -}}
+{{ if get . "headless" | default false -}}
 export DEBIAN_FRONTEND=noninteractive
 {{ end -}}
 
