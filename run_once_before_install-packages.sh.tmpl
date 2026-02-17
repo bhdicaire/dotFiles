@@ -1,11 +1,13 @@
 #!/bin/bash
-
 # Exit on error
 set -e
 
+{{ if .headless -}}
+export DEBIAN_FRONTEND=noninteractive
+{{ end -}}
+
 {{ if eq .chezmoi.os "linux" -}}
 echo "🚀 Starting package installation..."
-
 # 1. 🌍 Configuring Locales (Non-interactive)
 # This prevents Perl/Apt warnings during the rest of the script
 echo "🌍 Configuring Locales..."
@@ -23,36 +25,31 @@ if ! locale -a | grep -q "en_CA.utf8"; then
 else
     echo "ℹ️ Locale en_CA.UTF-8 already exists."
 fi
-
 # 2. 🛡️ Prepare SSH Environment
 # Create socket directory for SSH multiplexing
 mkdir -p "$HOME"/.ssh/sockets
 chmod 700 "$HOME"/.ssh/sockets
 echo "✅ SSH socket directory prepared."
-
 # 3. 📦 Install Full Vim + Admin essentials
-# We update apt now that locales are fixed to avoid warnings
-sudo apt update -y
-sudo apt full-upgrade -y
-sudo apt install -y vim btop htop tmux curl wget gpg fastfetch zsh git
-
+# We use apt-get (not apt) to avoid CLI stability warnings in scripts
+sudo apt-get update -y -qq
+sudo apt-get full-upgrade -y -qq
+sudo apt-get install -y -qq vim btop htop tmux curl wget gpg fastfetch zsh git
 # 4. 📂 Add eza repository for modern 'ls'
 if ! command -v eza &> /dev/null; then
     sudo mkdir -p /etc/apt/keyrings
     wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
     echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
-    sudo apt update
-    sudo apt install -y eza
+    sudo apt-get update -qq
+    sudo apt-get install -y -qq eza
 fi
-
-# 5. 🚀 Install Starship prompt
+# 5. 🚀 Install Starship prompt (to user bin directory, no sudo needed)
 if ! command -v starship &> /dev/null; then
-    curl -sS https://starship.rs/install.sh | sh -s -- -y
+    mkdir -p "$HOME/.config/bin"
+    curl -sS https://starship.rs/install.sh | sh -s -- -y -b "$HOME/.config/bin"
 fi
-
 echo "✅ System packages and environment are ready!"
 {{ end -}}
-
 # 6. 🐚 Switch default shell to Zsh
 if [ "$SHELL" != "$(which zsh)" ]; then
     echo "🐚 Switching default shell to Zsh..."
