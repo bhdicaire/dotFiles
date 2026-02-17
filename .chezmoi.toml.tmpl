@@ -1,11 +1,16 @@
-{{- $email := promptStringOnce . "email" "Admin Email Address" -}}
-{{- $name := promptStringOnce . "name" "Admin Full Name" -}}
+{- $email := promptStringOnce . "email" "Admin Email Address" -}}
+{{- $name := promptStringOnce . "name" "Full Name" -}}
 {{- $hostname := promptStringOnce . "hostname" "Hostname" -}}
-{{- $username := promptStringOnce . "username" "Admin Username" "sysadmin" -}}
+{{- $headless := or (get . "headless") false -}}
+{{- $osid := or (get . "osid") .chezmoi.os -}}
 
 [data]
     email = {{ $email | quote }}
     name = {{ $name | quote }}
+    docker = {{ or (get . "docker") false }}
+    ephemeral = {{ or (get . "ephemeral") false }}
+    headless = {{ $headless }}
     hostname = {{ $hostname | quote }}
-    username = {{ $username | quote }}
-    is_server = true
+    secret = {{ or (get . "secret") false }}
+    onepasswordAccount = {{ or (get . "onepasswordAccount") "" | quote }}
+    osid = {{ $osid | quote }}
