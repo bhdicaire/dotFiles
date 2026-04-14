@@ -48,6 +48,10 @@ source $ZDOTDIR/functions.zsh
 # +---------+
 source $ZDOTDIR/aliases.zsh
 
+# macOS-specific configuration
+[[ -f "${ZDOTDIR:-$HOME/.config/zsh}/macos.zsh" ]] && \
+  source "${ZDOTDIR:-$HOME/.config/zsh}/macos.zsh"
+
 # +-------+
 # |PROMPT |
 # +-------+

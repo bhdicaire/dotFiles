@@ -9,21 +9,36 @@ Host pve-node
     User {{ .username }}
 {{- end }}
 
+Host github.com
+    User git
+    IdentityFile ~/.ssh/github_bhd
+    AddKeysToAgent no
+    UseKeychain no
+
 Host *
     # Hardened Ciphers & Algorithms
-    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+    KexAlgorithms sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org
     Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com
+    MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+
+    # SSHFP DNS fingerprint validation
+    VerifyHostKeyDNS yes
+
+    StrictHostKeyChecking accept-new
+    ServerAliveInterval 60
+    HashKnownHosts no
+    GSSAPIAuthentication no
+    SendEnv LANG LC_*
+    SetEnv TERM=xterm-256color
+
+    # 1Password SSH agent — handles all key operations
+    UseKeychain no
+    AddKeysToAgent no
+{{- if eq .chezmoi.os "darwin" }}
+    IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+{{- end }}
 
     # Multiplexing (Speeds up subsequent connections to the same host)
     ControlMaster auto
     ControlPath ~/.ssh/sockets/%r@%h:%p
     ControlPersist 10m
-
-    # Security & Privacy
-    HashKnownHosts yes
-    GSSAPIAuthentication no
-    VerifyHostKeyDNS yes
-
-    # Environment
-    SendEnv LANG LC_*
-    SetEnv TERM=xterm-256color

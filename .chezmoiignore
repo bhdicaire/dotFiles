@@ -29,5 +29,8 @@ ansible.cfg
 # Don't copy the following files if OS is Linux
 {{- if ne .chezmoi.os "darwin" }}
 .skhdrc
+.config/karabiner
+# Ghostty config excluded on headless Linux servers.
+# Remove this line if you add a Linux desktop machine.
+.config/ghostty
 {{- end }}
-
