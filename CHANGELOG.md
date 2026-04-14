@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/bhdicaire/dotFiles/compare/v1.0.1...v1.1.0) (2026-04-14)
+
+
+### Features
+
+* **macos:** add Ghostty config, Karabiner, macOS zsh, age encryption support ([888cb65](https://github.com/bhdicaire/dotFiles/commit/888cb652281ebe57e54078e0a150d4e278171808))
+
 ## [1.0.1](https://github.com/bhdicaire/dotFiles/compare/v1.0.0...v1.0.1) (2026-02-17)
 
 
