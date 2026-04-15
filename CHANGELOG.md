@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/bhdicaire/dotFiles/compare/v1.1.0...v1.1.1) (2026-04-15)
+
+
+### Bug Fixes
+
+* OS guards ([fc2a9fa](https://github.com/bhdicaire/dotFiles/commit/fc2a9fa5991c64577fd4be455cdfc5b96a2c7fb8))
+
 ## [1.1.0](https://github.com/bhdicaire/dotFiles/compare/v1.0.1...v1.1.0) (2026-04-14)
 
 
