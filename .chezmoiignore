@@ -22,8 +22,6 @@ ansible.cfg
 .xsession
 .Xmodmap
 .Xresources
-.xinitrc
-.xsession
 {{- end }}
 
 # Don't copy the following files if OS is Linux

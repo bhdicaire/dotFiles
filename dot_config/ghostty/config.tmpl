@@ -18,7 +18,7 @@ font-family = "monospace"
 font-size = 14
 font-feature = +calt
 font-feature = +liga
-font-feature = +ss01    # slashed zero in Operator Mono
+font-feature = +zero    # slashed zero in Operator Mono
 
 # ── Theme ─────────────────────────────────────────────────────
 theme = "dark:BHDicaire-Dark,light:BHDicaire-Light"
@@ -45,7 +45,9 @@ scrollback-limit = 100000
 
 # ── Performance ───────────────────────────────────────────────
 # M3 Max — can handle metal renderer at full refresh
+{{- if eq .chezmoi.os "darwin" }}
 renderer = metal
+{{- end }}
 vsync = true
 
 # ── Clipboard ────────────────────────────────────────────────
