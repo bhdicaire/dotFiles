@@ -18,6 +18,8 @@
     onepasswordAccount = {{ or (get . "onepasswordAccount") "" | quote }}
     osid = {{ $osid | quote }}
 
+encryption = "age"
+
 [age]
     identity  = "{{ .chezmoi.homeDir }}/.config/chezmoi/key.txt"
     recipient = "REPLACE_WITH_YOUR_AGE_PUBLIC_KEY"  # set by scripts/age-setup.sh
