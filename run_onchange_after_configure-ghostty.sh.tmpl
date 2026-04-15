@@ -7,11 +7,18 @@ echo "🛠️ Compiling Ghostty terminfo..."
 # Ensure the user terminfo directory exists
 mkdir -p "$HOME/.terminfo"
 
-# Compile the definition.
-# -x: Essential for Ghostty modern capabilities (undercurls, 24-bit color)
-# -o: Forces output to the user directory to avoid permission issues
-tic -x -o "$HOME/.terminfo" <<EOF
+# Write the terminfo source to a temp file and compile from there.
+# Using a heredoc is unreliable because the terminfo content contains
+# lines that can collide with the heredoc delimiter.
+TERMINFO_SRC=$(mktemp /tmp/xterm-ghostty.XXXXXX.terminfo)
+trap 'rm -f "$TERMINFO_SRC"' EXIT
+
+cat > "$TERMINFO_SRC" << 'CHEZMOI_EOF'
 {{ include "xterm-ghostty.terminfo" }}
-EOF
+CHEZMOI_EOF
+
+# -x: enables modern capabilities (undercurls, 24-bit colour)
+# -o: writes to user directory to avoid permission issues
+tic -x -o "$HOME/.terminfo" "$TERMINFO_SRC"
 
 echo "✅ Ghostty terminfo setup complete."
