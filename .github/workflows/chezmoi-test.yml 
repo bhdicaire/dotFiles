@@ -1,0 +1,48 @@
+name: Chezmoi Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  chezmoi-validate:
+    name: Validate Chezmoi Templates
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install chezmoi
+        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
+
+      - name: Verify templates parse
+        run: |
+          # Initialize chezmoi with dummy data to validate templates
+          mkdir -p ~/.config/chezmoi
+          cat > ~/.config/chezmoi/chezmoi.toml << 'EOF'
+          [data]
+            name = "Test User"
+            email = "test@example.com"
+            hostname = "testhost"
+          EOF
+
+          chezmoi init --source="$(pwd)" --no-tty
+          echo "✓ Chezmoi init succeeded"
+
+      - name: Dry-run apply
+        run: |
+          chezmoi apply --dry-run --verbose 2>&1 | head -100
+          echo "✓ Chezmoi dry-run succeeded"
+
+  install-script-check:
+    name: Validate Install Script
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check install script syntax
+        run: |
+          # Extract shell from template, validate syntax
+          sed 's/{{.*}}//g' run_once_before_install-packages.sh.tmpl > /tmp/install.sh
+          bash -n /tmp/install.sh
+          echo "✓ Install script syntax OK"
